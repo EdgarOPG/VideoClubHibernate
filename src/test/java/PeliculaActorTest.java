@@ -20,9 +20,9 @@ import org.junit.Test;
  *
  * @author edgar
  */
-public class ActorTest {
+public class PeliculaActorTest {
     
-    public ActorTest() {
+    public PeliculaActorTest() {
     }
     
     @BeforeClass
@@ -46,7 +46,7 @@ public class ActorTest {
     //
     @Test
     public void hello() {
-        
+            
     //  Creacion del EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("videoPU");
         EntityManager em = emf.createEntityManager();
@@ -79,6 +79,5 @@ public class ActorTest {
         em.getTransaction().begin();
         em.remove(a2);
         em.getTransaction().commit();
-
     }
 }

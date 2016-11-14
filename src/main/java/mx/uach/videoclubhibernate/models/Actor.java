@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mx.uach.videoclubhibernate.models;
 
 import java.io.Serializable;
@@ -20,8 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
- * @author edgar
+ * Definicion de la clase Autor
+ * @author Edgar Omar Peinado Garcia
+ * @version 1.0
  */
 @Entity
 @Table(name = "Actores")

@@ -11,8 +11,9 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
- *
- * @author edgar
+ * Definicion de la clase DirectorSocioPK
+ * @author Edgar Omar Peinado Garcia
+ * @version 1.0
  */
 @Embeddable
 public class DirectorSocioPK implements Serializable {

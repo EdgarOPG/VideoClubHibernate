@@ -21,8 +21,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
- * @author edgar
+ * Definicion de la clase Pelicula
+ * @author Edgar Omar Peinado Garcia
+ * @version 1.0
  */
 @Entity
 @Table(name = "Peliculas")

@@ -19,8 +19,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
- *
- * @author edgar
+ * Definicion de la clase PeliculaActor
+ * @author Edgar Omar Peinado Garcia
+ * @version 1.0
  */
 @Entity
 @Table(name = "Peliculas_actores")

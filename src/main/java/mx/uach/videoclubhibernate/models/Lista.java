@@ -22,8 +22,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
- * @author edgar
+ * Definicion de la clase Lista
+ * @author Edgar Omar Peinado Garcia
+ * @version 1.0
  */
 @Entity
 @Table(name = "Listas")

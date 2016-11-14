@@ -15,8 +15,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
- *
- * @author edgar
+ * Definicion de la clase DirectorSocio
+ * @author Edgar Omar Peinado Garcia
+ * @version 1.0
  */
 @Entity
 @Table(name = "Directores_socios")
