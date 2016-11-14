@@ -57,6 +57,19 @@ public class Socio implements Serializable {
         this.id = id;
     }
 
+    public Socio(String nombre, String direccion, String telefono) {
+        setId(id);
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.fichaSet = fichaSet;
+        this.actorSocioSet = actorSocioSet;
+        this.directorSocioSet = directorSocioSet;
+        this.listaSet = listaSet;
+    }
+    
+    
+
     public Integer getId() {
         return id;
     }

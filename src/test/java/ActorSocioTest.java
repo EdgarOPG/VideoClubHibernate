@@ -56,7 +56,7 @@ public class ActorSocioTest {
     //  Operacion INSERT
         Query q = em.createQuery("SELECT a from Actor a WHERE nombre = 'Roberts'");
         Actor a = (Actor) q.getSingleResult();
-        Query q2 = em.createQuery("SELECT s from Socio s WHERE nombre = 'Edgar'");
+        Query q2 = em.createQuery("SELECT s from Socio s WHERE nombre = 'Rodrigo'");
         Socio s = (Socio) q2.getSingleResult();
         ActorSocio as = new ActorSocio(a, s);
         em.getTransaction().begin();

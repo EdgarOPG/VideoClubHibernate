@@ -55,7 +55,7 @@ public class FichaTest {
         EntityManager em = emf.createEntityManager();
         
     //  Operacion INSERT    
-        Query q = em.createQuery("SELECT s from Socio s WHERE nombre = 'Edgar'");
+        Query q = em.createQuery("SELECT s from Socio s WHERE nombre = 'Rodrigo'");
         Socio s = (Socio) q.getSingleResult();
         String stringFecha = "2014-09-19";
         Date fecha = Date.valueOf(stringFecha);
@@ -65,7 +65,7 @@ public class FichaTest {
         em.getTransaction().commit();
         
     //  Operacion SELECT 1 
-        Query q2 = em.createQuery("SELECT f from Ficha f WHERE id = 1");
+        Query q2 = em.createQuery("SELECT f from Ficha f WHERE id = 2");
         Ficha f2 = (Ficha) q2.getSingleResult();
         System.out.println(f2.toString());
         

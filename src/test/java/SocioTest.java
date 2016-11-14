@@ -9,8 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import mx.uach.videoclubhibernate.models.Cinta;
-import mx.uach.videoclubhibernate.models.Pelicula;
+import mx.uach.videoclubhibernate.models.Actor;
+import mx.uach.videoclubhibernate.models.Socio;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,9 +21,9 @@ import org.junit.Test;
  *
  * @author edgar
  */
-public class CintaTest {
+public class SocioTest {
     
-    public CintaTest() {
+    public SocioTest() {
     }
     
     @BeforeClass
@@ -47,40 +47,39 @@ public class CintaTest {
     //
     @Test
     public void hello() {
-        
+                
     //  Creacion del EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("videoPU");
         EntityManager em = emf.createEntityManager();
 
     //  Operacion INSERT
-        Query q = em.createQuery("SELECT p from Pelicula p WHERE id = 3");
-        Pelicula pelicula = (Pelicula) q.getSingleResult();
-        Cinta c = new Cinta(1, pelicula);
+        Socio s = new Socio("Daniela", "La industrial", "6141375982");
         em.getTransaction().begin();
-        em.persist(c);
+        em.persist(s);
         em.getTransaction().commit();
     
     //  Operacion SELECT 1 
-        Query q2 = em.createQuery("SELECT c from Cinta c WHERE id = 1");
-        Cinta c2 = (Cinta) q.getSingleResult();
-        System.out.println(c2.toString());
+        Query q = em.createQuery("SELECT s from Socio s WHERE id = 2");
+        Socio s2 = (Socio) q.getSingleResult();
+        System.out.println(s2.toString());
         
     //  Operacion SELECT *
-        Query qAll = em.createQuery("SELECT c from Cinta c");
-        List<Cinta> cintas = qAll.getResultList();        
-        for (Cinta cinta : cintas) {
-            System.out.println(cinta.toString());
+        Query qAll = em.createQuery("SELECT s from Socio s");
+        List<Socio> socios = qAll.getResultList();        
+        for (Socio socio : socios) {
+            System.out.println(socio.toString());
         }
 
     //  Operacion UPDATE
         em.getTransaction().begin();        
-        c2.setNumeroCopia(5);        
-        em.persist(c2);
+        s2.setNombre("Rodrigo");        
+        em.persist(s2);
         em.getTransaction().commit();        
 
     //  Operacion DELETE 
         em.getTransaction().begin();
-        em.remove(c2);
+        em.remove(s2);
         em.getTransaction().commit();
-    }
+
+}
 }

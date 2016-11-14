@@ -51,6 +51,12 @@ public class Cinta implements Serializable {
         this.id = id;
     }
 
+    public Cinta(Integer numeroCopia, Pelicula peliculaId) {
+        setId(id);
+        this.numeroCopia = numeroCopia;
+        this.peliculaId = peliculaId;
+    }
+
     public Integer getId() {
         return id;
     }
