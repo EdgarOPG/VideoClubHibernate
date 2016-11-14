@@ -25,8 +25,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Peliculas_actores")
 @NamedQueries({
-    @NamedQuery(name = "PeliculasActores.findAll", query = "SELECT p FROM PeliculasActores p")})
-public class PeliculasActores implements Serializable {
+    @NamedQuery(name = "PeliculaActor.findAll", query = "SELECT p FROM PeliculaActor p")})
+public class PeliculaActor implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,10 +41,10 @@ public class PeliculasActores implements Serializable {
     @ManyToOne
     private Pelicula peliculaId;
 
-    public PeliculasActores() {
+    public PeliculaActor() {
     }
 
-    public PeliculasActores(Integer id) {
+    public PeliculaActor(Integer id) {
         this.id = id;
     }
 
@@ -82,10 +82,10 @@ public class PeliculasActores implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PeliculasActores)) {
+        if (!(object instanceof PeliculaActor)) {
             return false;
         }
-        PeliculasActores other = (PeliculasActores) object;
+        PeliculaActor other = (PeliculaActor) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -94,7 +94,7 @@ public class PeliculasActores implements Serializable {
 
     @Override
     public String toString() {
-        return "mx.uach.videoclubhibernate.models.PeliculasActores[ id=" + id + " ]";
+        return "mx.uach.videoclubhibernate.models.PeliculaActor[ id=" + id + " ]";
     }
     
 }

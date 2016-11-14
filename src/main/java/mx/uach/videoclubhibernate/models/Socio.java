@@ -44,7 +44,7 @@ public class Socio implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "socioId")
     private Set<Ficha> fichaSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "socioId")
-    private Set<ActorSocio> actoreSocioSet;
+    private Set<ActorSocio> actorSocioSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "socio")
     private Set<DirectorSocio> directorSocioSet;
     @OneToMany(mappedBy = "socioid")
@@ -97,12 +97,12 @@ public class Socio implements Serializable {
         this.fichaSet = fichaSet;
     }
 
-    public Set<ActorSocio> getActoreSocioSet() {
-        return actoreSocioSet;
+    public Set<ActorSocio> getActorSocioSet() {
+        return actorSocioSet;
     }
 
-    public void setActoreSocioSet(Set<ActorSocio> actoreSocioSet) {
-        this.actoreSocioSet = actoreSocioSet;
+    public void setActorSocioSet(Set<ActorSocio> actorSocioSet) {
+        this.actorSocioSet = actorSocioSet;
     }
 
     public Set<DirectorSocio> getDirectorSocioSet() {

@@ -29,12 +29,6 @@ import javax.persistence.Table;
     @NamedQuery(name = "Director.findAll", query = "SELECT d FROM Director d")})
 public class Director implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "director")
-    private Set<DirectorSocio> directorSocioSet;
-
-    @OneToMany(mappedBy = "directorId")
-    private Set<Pelicula> peliculaSet;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,6 +37,10 @@ public class Director implements Serializable {
     private Integer id;
     @Column(name = "nombre")
     private String nombre;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "director")
+    private Set<DirectorSocio> directorSocioSet;
+    @OneToMany(mappedBy = "directorId")
+    private Set<Pelicula> peliculaSet;
 
     public Director() {
     }
@@ -72,6 +70,22 @@ public class Director implements Serializable {
         this.nombre = nombre;
     }
 
+    public Set<DirectorSocio> getDirectorSocioSet() {
+        return directorSocioSet;
+    }
+
+    public void setDirectorSocioSet(Set<DirectorSocio> directorSocioSet) {
+        this.directorSocioSet = directorSocioSet;
+    }
+
+    public Set<Pelicula> getPeliculaSet() {
+        return peliculaSet;
+    }
+
+    public void setPeliculaSet(Set<Pelicula> peliculaSet) {
+        this.peliculaSet = peliculaSet;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -94,23 +108,7 @@ public class Director implements Serializable {
 
     @Override
     public String toString() {
-        return "mx.uach.videoclubhibernate.models.Director[ nombre=" + nombre + " ]";
-    }
-
-    public Set<Pelicula> getPeliculaSet() {
-        return peliculaSet;
-    }
-
-    public void setPeliculaSet(Set<Pelicula> peliculaSet) {
-        this.peliculaSet = peliculaSet;
-    }
-
-    public Set<DirectorSocio> getDirectorSocioSet() {
-        return directorSocioSet;
-    }
-
-    public void setDirectorSocioSet(Set<DirectorSocio> directorSocioSet) {
-        this.directorSocioSet = directorSocioSet;
+        return "mx.uach.videoclubhibernate.models.Director[ id=" + id + " ]";
     }
     
 }

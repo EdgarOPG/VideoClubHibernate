@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,8 +25,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Actores")
+@NamedQueries({
+    @NamedQuery(name = "Actor.findAll", query = "SELECT a FROM Actor a")})
 public class Actor implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -32,17 +37,25 @@ public class Actor implements Serializable {
     private Integer id;
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actorId")
-    private Set<ActorSocio> actoreSocioSet;
-    @OneToMany(mappedBy = "actorId")
-    private Set<PeliculasActores> peliculasActoresSet;
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)    
-    
     @Column(name = "apellido")
     private String apellido;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actorId")
+    private Set<ActorSocio> actorSocioSet;
+    @OneToMany(mappedBy = "actorId")
+    private Set<PeliculaActor> peliculaActorSet;
+
+    public Actor() {
+    }
+
+    public Actor(Integer id) {
+        this.id = id;
+    }
+
+    public Actor(String nombre, String apellido) {
+        setId(id);
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
 
     public Integer getId() {
         return id;
@@ -67,14 +80,21 @@ public class Actor implements Serializable {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    
-    public Actor() {
+
+    public Set<ActorSocio> getActorSocioSet() {
+        return actorSocioSet;
     }
 
-    public Actor(String nombre, String apellido) {
-        setId(id);
-        this.nombre = nombre;
-        this.apellido = apellido;
+    public void setActorSocioSet(Set<ActorSocio> actorSocioSet) {
+        this.actorSocioSet = actorSocioSet;
+    }
+
+    public Set<PeliculaActor> getPeliculaActorSet() {
+        return peliculaActorSet;
+    }
+
+    public void setPeliculaActorSet(Set<PeliculaActor> peliculaActorSet) {
+        this.peliculaActorSet = peliculaActorSet;
     }
 
     @Override
@@ -99,27 +119,7 @@ public class Actor implements Serializable {
 
     @Override
     public String toString() {
-        return "Actores[ nombre=" + nombre + " ]";
-    }
-
-    public Actor(Integer id) {
-        this.id = id;
-    }
-
-    public Set<ActorSocio> getActoreSocioSet() {
-        return actoreSocioSet;
-    }
-
-    public void setActoreSocioSet(Set<ActorSocio> actoreSocioSet) {
-        this.actoreSocioSet = actoreSocioSet;
-    }
-
-    public Set<PeliculasActores> getPeliculasActoresSet() {
-        return peliculasActoresSet;
-    }
-
-    public void setPeliculasActoresSet(Set<PeliculasActores> peliculasActoresSet) {
-        this.peliculasActoresSet = peliculasActoresSet;
+        return "mx.uach.videoclubhibernate.models.Actor[ id=" + id + " ]";
     }
     
 }

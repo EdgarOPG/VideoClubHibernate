@@ -30,13 +30,6 @@ import javax.persistence.Table;
     @NamedQuery(name = "Pelicula.findAll", query = "SELECT p FROM Pelicula p")})
 public class Pelicula implements Serializable {
 
-    @OneToMany(mappedBy = "peliculaId")
-    private Set<PeliculasActores> peliculasActoresSet;
-    @OneToMany(mappedBy = "peliculasId")
-    private Set<Lista> listaSet;
-    @OneToMany(mappedBy = "peliculaId")
-    private Set<Cinta> cintaSet;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,9 +42,15 @@ public class Pelicula implements Serializable {
     private String genero;
     @Column(name = "duracion")
     private Integer duracion;
+    @OneToMany(mappedBy = "peliculaId")
+    private Set<PeliculaActor> peliculaActorSet;
     @JoinColumn(name = "director_id", referencedColumnName = "id")
     @ManyToOne
     private Director directorId;
+    @OneToMany(mappedBy = "peliculasId")
+    private Set<Lista> listaSet;
+    @OneToMany(mappedBy = "peliculaId")
+    private Set<Cinta> cintaSet;
 
     public Pelicula() {
     }
@@ -60,16 +59,16 @@ public class Pelicula implements Serializable {
         this.id = id;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public Pelicula(String titulo, String genero, Integer duracion, Director directorId) {
         setId(id);
         this.titulo = titulo;
         this.genero = genero;
         this.duracion = duracion;
         this.directorId = directorId;
-    }
-    
-    public Integer getId() {
-        return id;
     }
 
     public void setId(Integer id) {
@@ -100,12 +99,36 @@ public class Pelicula implements Serializable {
         this.duracion = duracion;
     }
 
+    public Set<PeliculaActor> getPeliculaActorSet() {
+        return peliculaActorSet;
+    }
+
+    public void setPeliculaActorSet(Set<PeliculaActor> peliculaActorSet) {
+        this.peliculaActorSet = peliculaActorSet;
+    }
+
     public Director getDirectorId() {
         return directorId;
     }
 
     public void setDirectorId(Director directorId) {
         this.directorId = directorId;
+    }
+
+    public Set<Lista> getListaSet() {
+        return listaSet;
+    }
+
+    public void setListaSet(Set<Lista> listaSet) {
+        this.listaSet = listaSet;
+    }
+
+    public Set<Cinta> getCintaSet() {
+        return cintaSet;
+    }
+
+    public void setCintaSet(Set<Cinta> cintaSet) {
+        this.cintaSet = cintaSet;
     }
 
     @Override
@@ -130,31 +153,7 @@ public class Pelicula implements Serializable {
 
     @Override
     public String toString() {
-        return "Pelicula[ titulo=" + titulo + " ]";
-    }
-
-    public Set<PeliculasActores> getPeliculasActoresSet() {
-        return peliculasActoresSet;
-    }
-
-    public void setPeliculasActoresSet(Set<PeliculasActores> peliculasActoresSet) {
-        this.peliculasActoresSet = peliculasActoresSet;
-    }
-
-    public Set<Lista> getListaSet() {
-        return listaSet;
-    }
-
-    public void setListaSet(Set<Lista> listaSet) {
-        this.listaSet = listaSet;
-    }
-
-    public Set<Cinta> getCintaSet() {
-        return cintaSet;
-    }
-
-    public void setCintaSet(Set<Cinta> cintaSet) {
-        this.cintaSet = cintaSet;
+        return "mx.uach.videoclubhibernate.models.Pelicula[ id=" + id + " ]";
     }
     
 }
