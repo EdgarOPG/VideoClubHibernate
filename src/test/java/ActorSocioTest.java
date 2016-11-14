@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -57,34 +58,27 @@ public class ActorSocioTest {
         Actor a = (Actor) q.getSingleResult();
         Query q2 = em.createQuery("SELECT s from Socio s WHERE nombre = 'Edgar'");
         Socio s = (Socio) q2.getSingleResult();
-        
         ActorSocio as = new ActorSocio(a, s);
         em.getTransaction().begin();
         em.persist(as);
         em.getTransaction().commit();
     
     //  Operacion SELECT 1 
-//        Query q3 = em.createQuery("SELECT a from ActorSocio a WHERE id = 1");
-//        ActorSocio as2 = (ActorSocio) q.getSingleResult();
-//        System.out.println(as2.toString());
+        Query q3 = em.createQuery("SELECT a from ActorSocio a WHERE id = 1");
+        ActorSocio as2 = (ActorSocio) q3.getSingleResult();
+        System.out.println(as2.toString());
         
     //  Operacion SELECT *
-//            Query qAll = em.createQuery("SELECT a from Actor a");
-//        List<Actor> actores = qAll.getResultList();        
-//        for (Actor actor : actores) {
-//            System.out.println(actor.toString());
-//        }
-
-    //  Operacion UPDATE
-//        em.getTransaction().begin();        
-//        a2.setApellido("Chaparro");        
-//        em.persist(a2);
-//        em.getTransaction().commit();        
-//
-//    //  Operacion DELETE 
-//        em.getTransaction().begin();
-//        em.remove(a2);
-//        em.getTransaction().commit();
+            Query qAll = em.createQuery("SELECT a from ActorSocio a");
+        List<ActorSocio> actoresSocios = qAll.getResultList();        
+        for (ActorSocio actorSocio : actoresSocios) {
+            System.out.println(actorSocio.toString());
+        }
+       
+    //  Operacion DELETE 
+        em.getTransaction().begin();
+        em.remove(as2);
+        em.getTransaction().commit();
 
 
     }

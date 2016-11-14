@@ -4,13 +4,15 @@
  * and open the template in the editor.
  */
 
+import java.sql.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import mx.uach.videoclubhibernate.models.Director;
+import mx.uach.videoclubhibernate.models.Ficha;
 import mx.uach.videoclubhibernate.models.Pelicula;
+import mx.uach.videoclubhibernate.models.Socio;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,9 +23,9 @@ import org.junit.Test;
  *
  * @author edgar
  */
-public class PeliculaTest {
+public class FichaTest {
     
-    public PeliculaTest() {
+    public FichaTest() {
     }
     
     @BeforeClass
@@ -45,42 +47,39 @@ public class PeliculaTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     @Test
-     public void hello() {
-     
+    @Test
+    public void hello() {
+    
     //  Creacion del EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("videoPU");    
         EntityManager em = emf.createEntityManager();
         
     //  Operacion INSERT    
-        Query q = em.createQuery("SELECT d from Director d WHERE nombre = 'Peinado'");
-        Director d = (Director) q.getSingleResult();
-        Pelicula p = new Pelicula("El aro", "terror", 120, d);
+        Query q = em.createQuery("SELECT s from Socio s WHERE nombre = 'Edgar'");
+        Socio s = (Socio) q.getSingleResult();
+        String stringFecha = "2014-09-19";
+        Date fecha = Date.valueOf(stringFecha);
+        Ficha f = new Ficha(s, fecha);
         em.getTransaction().begin();
-        em.persist(p);
+        em.persist(f);
         em.getTransaction().commit();
         
     //  Operacion SELECT 1 
-        Query q2 = em.createQuery("SELECT p from Pelicula p WHERE id = 3");
-        Pelicula p2 = (Pelicula) q2.getSingleResult();
-        System.out.println(p2.toString());
+        Query q2 = em.createQuery("SELECT f from Ficha f WHERE id = 1");
+        Ficha f2 = (Ficha) q2.getSingleResult();
+        System.out.println(f2.toString());
         
     //  Operacion SELECT *
-        Query qAll = em.createQuery("SELECT p from Pelicula p");
-        List<Pelicula> peliculas = qAll.getResultList();        
-        for (Pelicula pelicula : peliculas) {
-            System.out.println(pelicula.toString());
-        }
-
-    //  Operacion UPDATE
-        em.getTransaction().begin();        
-        p2.setTitulo("El conjuro");        
-        em.persist(p2);
-        em.getTransaction().commit();        
+        Query qAll = em.createQuery("SELECT f from Ficha f");
+        List<Ficha> fichas = qAll.getResultList();        
+        for (Ficha ficha : fichas) {
+            System.out.println(ficha.toString());
+        }       
 
     //  Operacion DELETE 
         em.getTransaction().begin();
-        em.remove(p2);
-        em.getTransaction().commit();
+        em.remove(f2);
+        em.getTransaction().commit();        
+        
     }
 }

@@ -55,6 +55,12 @@ public class Ficha implements Serializable {
         this.id = id;
     }
 
+    public Ficha(Socio socioId, Date fechaPrestamo) {
+        setId(id);
+        this.socioId = socioId;
+        this.fechaPrestamo = fechaPrestamo;
+    }
+    
     public Integer getId() {
         return id;
     }

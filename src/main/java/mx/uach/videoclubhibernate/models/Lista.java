@@ -56,6 +56,14 @@ public class Lista implements Serializable {
         this.id = id;
     }
 
+    public Lista(Date fecha, String estatus, Pelicula peliculasId, Socio socioid) {
+        setId(id);
+        this.fecha = fecha;
+        this.estatus = estatus;
+        this.peliculasId = peliculasId;
+        this.socioid = socioid;
+    }
+
     public Integer getId() {
         return id;
     }

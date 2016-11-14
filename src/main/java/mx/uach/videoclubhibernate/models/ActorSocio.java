@@ -68,17 +68,10 @@ public class ActorSocio implements Serializable {
         return actorId;
     }
 
-    public void setActorId(Actor actorId) {
-        this.actorId = actorId;
-    }
-
     public Socio getSocioId() {
         return socioId;
     }
 
-    public void setSocioId(Socio socioId) {
-        this.socioId = socioId;
-    }
 
     @Override
     public int hashCode() {
