@@ -8,12 +8,13 @@ package mx.uach.videoclubhibernate.models;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -24,16 +25,10 @@ import javax.persistence.Table;
  * @author edgar
  */
 @Entity
-@Table(name = "Directores")
+@Table(name = "Cintas")
 @NamedQueries({
-    @NamedQuery(name = "Director.findAll", query = "SELECT d FROM Director d")})
-public class Director implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "director")
-    private Set<DirectorSocio> directorSocioSet;
-
-    @OneToMany(mappedBy = "directorId")
-    private Set<Pelicula> peliculaSet;
+    @NamedQuery(name = "Cinta.findAll", query = "SELECT c FROM Cinta c")})
+public class Cinta implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,21 +36,21 @@ public class Director implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "numero_copia")
+    private Integer numeroCopia;
+    @OneToMany(mappedBy = "cintasId")
+    private Set<CintaFicha> cintaFichaSet;
+    @JoinColumn(name = "pelicula_id", referencedColumnName = "id")
+    @ManyToOne
+    private Pelicula peliculaId;
 
-    public Director() {
+    public Cinta() {
     }
 
-    public Director(Integer id) {
+    public Cinta(Integer id) {
         this.id = id;
     }
 
-    public Director(String nombre) {
-        setId(id);
-        this.nombre = nombre;
-    }
-    
     public Integer getId() {
         return id;
     }
@@ -64,12 +59,28 @@ public class Director implements Serializable {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Integer getNumeroCopia() {
+        return numeroCopia;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNumeroCopia(Integer numeroCopia) {
+        this.numeroCopia = numeroCopia;
+    }
+
+    public Set<CintaFicha> getCintaFichaSet() {
+        return cintaFichaSet;
+    }
+
+    public void setCintaFichaSet(Set<CintaFicha> cintaFichaSet) {
+        this.cintaFichaSet = cintaFichaSet;
+    }
+
+    public Pelicula getPeliculaId() {
+        return peliculaId;
+    }
+
+    public void setPeliculaId(Pelicula peliculaId) {
+        this.peliculaId = peliculaId;
     }
 
     @Override
@@ -82,10 +93,10 @@ public class Director implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Director)) {
+        if (!(object instanceof Cinta)) {
             return false;
         }
-        Director other = (Director) object;
+        Cinta other = (Cinta) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -94,23 +105,7 @@ public class Director implements Serializable {
 
     @Override
     public String toString() {
-        return "mx.uach.videoclubhibernate.models.Director[ nombre=" + nombre + " ]";
-    }
-
-    public Set<Pelicula> getPeliculaSet() {
-        return peliculaSet;
-    }
-
-    public void setPeliculaSet(Set<Pelicula> peliculaSet) {
-        this.peliculaSet = peliculaSet;
-    }
-
-    public Set<DirectorSocio> getDirectorSocioSet() {
-        return directorSocioSet;
-    }
-
-    public void setDirectorSocioSet(Set<DirectorSocio> directorSocioSet) {
-        this.directorSocioSet = directorSocioSet;
+        return "mx.uach.videoclubhibernate.models.Cinta[ id=" + id + " ]";
     }
     
 }

@@ -6,11 +6,15 @@
 package mx.uach.videoclubhibernate.models;
 
 import java.io.Serializable;
+import java.util.Set;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,12 +25,21 @@ import javax.persistence.Table;
 @Table(name = "Actores")
 public class Actor implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
     private Integer id;
-    
+    @Column(name = "nombre")
     private String nombre;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actorId")
+    private Set<ActorSocio> actoreSocioSet;
+    @OneToMany(mappedBy = "actorId")
+    private Set<PeliculasActores> peliculasActoresSet;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)    
     
     @Column(name = "apellido")
     private String apellido;
@@ -87,6 +100,26 @@ public class Actor implements Serializable {
     @Override
     public String toString() {
         return "Actores[ nombre=" + nombre + " ]";
+    }
+
+    public Actor(Integer id) {
+        this.id = id;
+    }
+
+    public Set<ActorSocio> getActoreSocioSet() {
+        return actoreSocioSet;
+    }
+
+    public void setActoreSocioSet(Set<ActorSocio> actoreSocioSet) {
+        this.actoreSocioSet = actoreSocioSet;
+    }
+
+    public Set<PeliculasActores> getPeliculasActoresSet() {
+        return peliculasActoresSet;
+    }
+
+    public void setPeliculasActoresSet(Set<PeliculasActores> peliculasActoresSet) {
+        this.peliculasActoresSet = peliculasActoresSet;
     }
     
 }

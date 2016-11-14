@@ -6,6 +6,7 @@
 package mx.uach.videoclubhibernate.models;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -27,6 +29,13 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Pelicula.findAll", query = "SELECT p FROM Pelicula p")})
 public class Pelicula implements Serializable {
+
+    @OneToMany(mappedBy = "peliculaId")
+    private Set<PeliculasActores> peliculasActoresSet;
+    @OneToMany(mappedBy = "peliculasId")
+    private Set<Lista> listaSet;
+    @OneToMany(mappedBy = "peliculaId")
+    private Set<Cinta> cintaSet;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -122,6 +131,30 @@ public class Pelicula implements Serializable {
     @Override
     public String toString() {
         return "Pelicula[ titulo=" + titulo + " ]";
+    }
+
+    public Set<PeliculasActores> getPeliculasActoresSet() {
+        return peliculasActoresSet;
+    }
+
+    public void setPeliculasActoresSet(Set<PeliculasActores> peliculasActoresSet) {
+        this.peliculasActoresSet = peliculasActoresSet;
+    }
+
+    public Set<Lista> getListaSet() {
+        return listaSet;
+    }
+
+    public void setListaSet(Set<Lista> listaSet) {
+        this.listaSet = listaSet;
+    }
+
+    public Set<Cinta> getCintaSet() {
+        return cintaSet;
+    }
+
+    public void setCintaSet(Set<Cinta> cintaSet) {
+        this.cintaSet = cintaSet;
     }
     
 }

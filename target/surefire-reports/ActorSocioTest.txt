@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
-Test set: ActorTest
+Test set: ActorSocioTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.672 sec <<< FAILURE!
-hello(ActorTest)  Time elapsed: 1.581 sec  <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.671 sec <<< FAILURE!
+hello(ActorSocioTest)  Time elapsed: 1.537 sec  <<< ERROR!
 javax.persistence.PersistenceException: [PersistenceUnit: videoPU] Unable to build Hibernate SessionFactory
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:1225)
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.access$600(EntityManagerFactoryBuilderImpl.java:119)
@@ -14,7 +14,7 @@ javax.persistence.PersistenceException: [PersistenceUnit: videoPU] Unable to bui
 	at org.hibernate.ejb.HibernatePersistence.createEntityManagerFactory(HibernatePersistence.java:54)
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55)
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:39)
-	at ActorTest.hello(ActorTest.java:51)
+	at ActorSocioTest.hello(ActorSocioTest.java:52)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

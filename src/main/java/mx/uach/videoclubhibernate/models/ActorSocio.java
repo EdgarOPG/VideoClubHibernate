@@ -1,22 +1,21 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+     * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package mx.uach.videoclubhibernate.models;
 
 import java.io.Serializable;
-import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -24,16 +23,10 @@ import javax.persistence.Table;
  * @author edgar
  */
 @Entity
-@Table(name = "Directores")
+@Table(name = "Actores_socios")
 @NamedQueries({
-    @NamedQuery(name = "Director.findAll", query = "SELECT d FROM Director d")})
-public class Director implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "director")
-    private Set<DirectorSocio> directorSocioSet;
-
-    @OneToMany(mappedBy = "directorId")
-    private Set<Pelicula> peliculaSet;
+    @NamedQuery(name = "ActoreSocio.findAll", query = "SELECT a FROM ActoreSocio a")})
+public class ActorSocio implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,21 +34,26 @@ public class Director implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "nombre")
-    private String nombre;
+    @JoinColumn(name = "actor_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Actor actorId;
+    @JoinColumn(name = "socio_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Socio socioId;
 
-    public Director() {
+    public ActorSocio() {
     }
 
-    public Director(Integer id) {
+    public ActorSocio(Integer id) {
         this.id = id;
     }
 
-    public Director(String nombre) {
+    public ActorSocio(Actor actorId, Socio socioId) {
         setId(id);
-        this.nombre = nombre;
+        this.actorId = actorId;
+        this.socioId = socioId;
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -64,12 +62,20 @@ public class Director implements Serializable {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Actor getActorId() {
+        return actorId;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setActorId(Actor actorId) {
+        this.actorId = actorId;
+    }
+
+    public Socio getSocioId() {
+        return socioId;
+    }
+
+    public void setSocioId(Socio socioId) {
+        this.socioId = socioId;
     }
 
     @Override
@@ -82,10 +88,10 @@ public class Director implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Director)) {
+        if (!(object instanceof ActorSocio)) {
             return false;
         }
-        Director other = (Director) object;
+        ActorSocio other = (ActorSocio) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -94,23 +100,7 @@ public class Director implements Serializable {
 
     @Override
     public String toString() {
-        return "mx.uach.videoclubhibernate.models.Director[ nombre=" + nombre + " ]";
-    }
-
-    public Set<Pelicula> getPeliculaSet() {
-        return peliculaSet;
-    }
-
-    public void setPeliculaSet(Set<Pelicula> peliculaSet) {
-        this.peliculaSet = peliculaSet;
-    }
-
-    public Set<DirectorSocio> getDirectorSocioSet() {
-        return directorSocioSet;
-    }
-
-    public void setDirectorSocioSet(Set<DirectorSocio> directorSocioSet) {
-        this.directorSocioSet = directorSocioSet;
+        return "mx.uach.videoclubhibernate.models.ActoreSocio[ id=" + id + " ]";
     }
     
 }

@@ -2,10 +2,18 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="videoPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <class>mx.uach.videoclubhibernate.models.Actor_1</class>
-    <class>mx.uach.videoclubhibernate.models.Actoresh</class>
     <class>mx.uach.videoclubhibernate.models.Director</class>
     <class>mx.uach.videoclubhibernate.models.Pelicula</class>
+    <class>mx.uach.videoclubhibernate.models.Ficha</class>
+    <class>mx.uach.videoclubhibernate.models.PeliculasActores</class>
+    <class>mx.uach.videoclubhibernate.models.DirectorSocio</class>
+    <class>mx.uach.videoclubhibernate.models.Socio</class>
+    <class>mx.uach.videoclubhibernate.models.CintaFicha</class>
+    <class>mx.uach.videoclubhibernate.models.Lista</class>
+    <class>mx.uach.videoclubhibernate.models.Cinta</class>
+    <class>mx.uach.videoclubhibernate.models.ActorSocio</class>
+    <class>mx.uach.videoclubhibernate.models.Actor</class>
+    <validation-mode>CALLBACK</validation-mode>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

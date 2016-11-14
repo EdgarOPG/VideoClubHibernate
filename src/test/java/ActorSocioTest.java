@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import mx.uach.videoclubhibernate.models.Actor;
+import mx.uach.videoclubhibernate.models.ActorSocio;
+import mx.uach.videoclubhibernate.models.Socio;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -20,9 +21,9 @@ import org.junit.Test;
  *
  * @author edgar
  */
-public class ActorTest {
+public class ActorSocioTest {
     
-    public ActorTest() {
+    public ActorSocioTest() {
     }
     
     @BeforeClass
@@ -52,15 +53,20 @@ public class ActorTest {
         EntityManager em = emf.createEntityManager();
 
     //  Operacion INSERT
-        Actor a = new Actor("Robert", "Downey Jr.");
+        Query q = em.createQuery("SELECT a from Actor a WHERE nombre = 'Roberts'");
+        Actor a = (Actor) q.getSingleResult();
+        Query q2 = em.createQuery("SELECT s from Socio s WHERE nombre = 'Edgar'");
+        Socio s = (Socio) q2.getSingleResult();
+        
+        ActorSocio as = new ActorSocio(a, s);
         em.getTransaction().begin();
-        em.persist(a);
+        em.persist(as);
         em.getTransaction().commit();
     
     //  Operacion SELECT 1 
-//        Query q = em.createQuery("SELECT a from Actor a WHERE id = 5");
-//        Actor a2 = (Actor) q.getSingleResult();
-//        System.out.println(a2.toString());
+//        Query q3 = em.createQuery("SELECT a from ActorSocio a WHERE id = 1");
+//        ActorSocio as2 = (ActorSocio) q.getSingleResult();
+//        System.out.println(as2.toString());
         
     //  Operacion SELECT *
 //            Query qAll = em.createQuery("SELECT a from Actor a");
@@ -74,11 +80,12 @@ public class ActorTest {
 //        a2.setApellido("Chaparro");        
 //        em.persist(a2);
 //        em.getTransaction().commit();        
-
-    //  Operacion DELETE 
+//
+//    //  Operacion DELETE 
 //        em.getTransaction().begin();
 //        em.remove(a2);
 //        em.getTransaction().commit();
+
 
     }
 }
